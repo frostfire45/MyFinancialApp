@@ -1,0 +1,47 @@
+<h1>Your Banks and Balances</h1>
+
+<div class="row">
+    <div class="column col">    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Bank</th>
+                    <th>Account Number</th>
+                    <th>Type</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bank of banks">
+                        <td >{{bank.id}}</td>
+                        <td >{{bank.bankName}}</td>
+                        <td >{{bank.accountNumber}}</td>
+                        <td >{{bank.accountType}}</td>
+                        <td >${{bank.balance}}</td>
+                </tr>
+            </tbody>
+        </table>   
+    </div>
+    <div class="column col">
+        <form class="form-group">            
+            <label for="fname">Bank's Name:</label>
+            <br>
+            <input type="text" id="bankName" name="bankName" value="Chase"/>
+            <br>
+            <label for="lname">Account Number</label>
+            <br>
+            <input type="text" id="accountNumber" name="accountNumber" value="223344556677"><br>
+            <label for="accountForms">Account Type:</label>
+            <br>
+            <select class="form-control" id="accountType" required>
+                <option *ngFor="let aType of accountForms" [value]="aType">{{ aType }}</option>
+            </select>
+            <br>
+            <label for="lname">Balance:</label>
+            <br>
+            <input type="text" id="balance" name="balance" value="3422.22"><br><br>
+            <input type="submit" value="Submit">
+          </form> 
+    </div>
+</div>
