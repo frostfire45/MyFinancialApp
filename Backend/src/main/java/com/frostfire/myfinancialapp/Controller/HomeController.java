@@ -3,8 +3,8 @@
  */
 package com.frostfire.myfinancialapp.Controller;
 
-import com.frostfire.myfinancialapp.Models.Bank;
-import com.frostfire.myfinancialapp.services.MockBank;
+import com.frostfire.myfinancialapp.model.Bank;
+import com.frostfire.myfinancialapp.moch.MockBank;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

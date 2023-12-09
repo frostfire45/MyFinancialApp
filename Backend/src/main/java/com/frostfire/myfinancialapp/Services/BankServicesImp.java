@@ -1,78 +1,68 @@
 package com.frostfire.myfinancialapp.Services;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.frostfire.myfinancialapp.dau.BankDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.frostfire.myfinancialapp.model.Bank;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BankServicesImp implements BankService {
     
-    private final List<Bank> mochBanks = new ArrayList<>();;
+    @Autowired
+    private BankDAO bankDAO;
 
-    public BankServicesImp(){
-        loadPreData();
-    }
-    private void loadPreData(){
-        Bank bank1 = new Bank();
-        bank1.setId(3);
-        bank1.setBankName("RBFCU");
-        bank1.setAccountNumber("3321223");
-        bank1.setType(Bank.AccountType.Checking);
-        bank1.setBalance(3322.33);
-        this.mochBanks.add(bank1);
-
-        this.mochBanks.add(
-                new Bank(
-                0,
-                "Chase",
-                "88332-22334-2221-2212",
-                Bank.AccountType.Checking,
-                3245.22));
-        this.mochBanks.add(new Bank(
-                1,
-                "Chase",
-                "4421-4566-77821-1231",
-                Bank.AccountType.Savings,
-                32443));
+    @Override
+    @Transactional
+    public List<Bank> getAllBanks() {
+        //(a,b) -> Integer.compare(a.getId(),b.getId())
+        //List<Bank> filter_banks = bankDAO.getAllBanks().sort();
+        return bankDAO.getAllBanks();
     }
     @Override
+    @Transactional
     public List<Bank> queryByName(String bankName) {
-        return this.mochBanks.stream()
-            .filter(bank -> Objects.equals(bank.getBankName(), bankName))
-            .collect(Collectors.toList());
+        List<Bank> allBanks = bankDAO.getAllBanks();
+        List<Bank> bankList = allBanks.stream()
+                .filter(bank -> Objects.equals(bank.getBankName(), bankName))
+                .collect(Collectors.toList());
+        return bankList;
     }
     @Override
     public Bank queryById(int id) {
-        if(id >= 0 && id < mochBanks.size()) {
-            return mochBanks.get(id);
+        List<Bank> bankList = bankDAO.getAllBanks();
+        // I will need to make this better
+        if(id >= 0 && id < bankList.size()) {
+            return bankList.get(id);
         }
         return null;
     }
-    @Override
-    public List<Bank> getAllBanks() {
-        this.mochBanks.sort((a,b) -> Integer.compare(a.getId(),b.getId()));
-        return this.mochBanks;
-    }
+
 
     @Override
     public void addNewBank(Bank bank) {
-        this.mochBanks.add(bank);
+        bankDAO.addNewBank(bank);
+        //this.mochBanks.add(bank);
     }
 
     @Override
     public void updateBank(Bank bank) {
-        mochBanks.set(bank.getId(),bank);
+        bankDAO.updateBank(bank);//.set(bank.getId(),bank);
     }
 
     @Override
     public void deleteBank(int id) {
-        if(id >= 0 && id < mochBanks.size()) {
-            this.mochBanks.removeIf(t -> t.getId() == id);
+        // Put in logic to pull once for stuff like size, but for now leave
+        List<Bank> bankList = bankDAO.getAllBanks();
+        if(id >= 0 && id < bankList.size()) {
+            bankDAO.deleteBank(id);
+            //this.mochBanks.removeIf(t -> t.getId() == id);
         }
     }
 }

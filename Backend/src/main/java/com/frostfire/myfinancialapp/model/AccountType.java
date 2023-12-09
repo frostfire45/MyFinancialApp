@@ -1,4 +1,4 @@
-package com.frostfire.myfinancialapp.Models;
+package com.frostfire.myfinancialapp.model;
 
 public enum AccountType {
     CHECKING,

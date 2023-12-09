@@ -1,4 +1,4 @@
-package com.frostfire.myfinancialapp.serverletconfig;
+package com.frostfire.myfinancialapp.config;
 
 import java.io.IOException;
 

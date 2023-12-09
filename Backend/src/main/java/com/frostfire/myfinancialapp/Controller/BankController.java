@@ -1,6 +1,5 @@
 package com.frostfire.myfinancialapp.Controller;
 
-<<<<<<< HEAD
 import com.frostfire.myfinancialapp.Services.BankService;
 import com.frostfire.myfinancialapp.model.Bank;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,44 +82,5 @@ public class BankController {
             bankService.deleteBank(id);
         }
         return REDIRECT_BANK_QUERY;
-=======
-import com.frostfire.myfinancialapp.Models.Bank;
-import com.frostfire.myfinancialapp.services.MockBank;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
-
-@RestController
-@RequestMapping("/api/bank")
-public class BankController {
-    private final MockBank mockBank;
-
-    public BankController(){
-        this.mockBank = new MockBank();
-    }
-    @GetMapping(value = "/getAllBanks",produces = TEXT_PLAIN_VALUE)
-    public String hello(){
-        StringBuilder sb = new StringBuilder();
-        JSONObject jsonObject = new JSONObject();
-        JSONArray jsonArray = new JSONArray();
-        jsonObject.put("Banks",jsonArray);
-
-        for (Bank bank : mockBank.getAllBanks()) {
-            JSONObject jsonBankObject = new JSONObject();
-            jsonBankObject.put("balance",bank.getBalance());
-            jsonBankObject.put("accountType", bank.getAccountType());
-            jsonBankObject.put("accountNumber",bank.getAccountNumber());
-            jsonBankObject.put("name",bank.getName());
-            jsonBankObject.put("id", bank.getId());
-            jsonArray.add(jsonBankObject);
-        }
-
-        return jsonObject.toString();
-        //return new ResponseEntity<>("Hello, " + name, HttpStatus.OK);
->>>>>>> d005570 (Adding stuff worked on from house)
     }
 }

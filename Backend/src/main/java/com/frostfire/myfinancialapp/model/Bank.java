@@ -1,15 +1,29 @@
 package com.frostfire.myfinancialapp.model;
 
+
+import jakarta.persistence.*;
+
+
+@Entity
+
 public class Bank {
     public enum AccountType { Checking, Savings }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "bank_name")
     private String bankName;
+    @Column(name = "account_number")
     private String accountNumber;
+    @Column(name = "account_type")
     private AccountType type;
+    @Column(name = "account_balance")
     private double balance;
+
     public Bank(){}
-    public Bank(int id, String bankName, String accountNumber, AccountType type, double balance ){
+    public Bank( int id, String bankName, String accountNumber, AccountType type, double balance ){
         this.id = id;
         this.bankName = bankName;
         this.accountNumber = accountNumber;

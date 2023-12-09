@@ -1,15 +1,14 @@
 package com.frostfire.myfinancialapp;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
 
-import com.frostfire.myfinancialapp.Services.SqliteService;
+import com.frostfire.myfinancialapp.config.MvcConfiguration;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import com.frostfire.myfinancialapp.serverletconfig.MvcConfiguration;
 
 public class FinancialWebAppInitializer implements WebApplicationInitializer {
 
@@ -25,6 +24,5 @@ public class FinancialWebAppInitializer implements WebApplicationInitializer {
 		servlet.setLoadOnStartup(1);
 		//Serving it. 
 		servlet.addMapping("/");
-		SqliteService.connect();
 	}
 }
