@@ -4,7 +4,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix = "mfa" %>
 <html>
     <mfa:header/>
-    <body>
+    <c:if>
         <mfa:myNav/>
         <h2>These are your banks</h2>
         <form method="post">
@@ -20,6 +20,7 @@
                 <th>Type</th>
                 <th>Balance</th>
             </tr>
+            <c:if !${banks}>
 			<c:forEach var="bank" items="${banks}" >
                 <tr id="${bank.getId()}">
                     <td id="${bank.getId()}.name">${bank.getBankName()}</td>
@@ -33,6 +34,7 @@
                        </span>
                 </tr>
             </c:forEach>
+            </c:if>
         </table>
         <script>
             function updateBtnFunction(id){

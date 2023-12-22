@@ -12,5 +12,6 @@
     <modules>
         <module>frontend</module>
         <module>backend</module>
+        <module>batch</module>
     </modules>
 </project>

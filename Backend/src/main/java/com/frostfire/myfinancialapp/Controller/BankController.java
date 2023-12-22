@@ -8,25 +8,30 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/bank/*")
 public class BankController {
 
     @Autowired
     private BankService bankService;
 
-    final String REDIRECT_BANK_QUERY = "redirect:/bank/bankQuery";
-
-    // GET All
-    @RequestMapping(value = REDIRECT_BANK_QUERY, method = RequestMethod.GET)
-    public ModelAndView showAllBanks() {
+    @GetMapping("/index")
+    public ModelAndView bankLanding(){
         ModelAndView mnv = new ModelAndView();
-        mnv.setViewName(REDIRECT_BANK_QUERY);
-        // Refactor so that I only need to call it once
-        if (!bankService.getAllBanks().isEmpty()) {
-            mnv.addObject("banks", bankService.getAllBanks());
-        }
+        mnv.addObject("banks",bankService.getAllBanks());
+        mnv.setViewName("bank/BankIndex");
         return mnv;
     }
+    /*
+    final String REDIRECT_BANK_QUERY = "redirect:/bank/bankQuery";
 
+    // GET ALL Other way
+    @GetMapping(value = "/bank")
+    public String showBanks(){
+        //ModelAndView mnv = new ModelAndView();
+        //mnv.setViewName("/bank/bankQuery");
+        //mnv.addObject("banks",bankService.getAllBanks());
+        return "/bank/bankQuery";
+    }
     // CREATE GET
     @RequestMapping(value = "/bank/addNewBank", method = RequestMethod.GET)
     public ModelAndView addBankGet(){
@@ -83,4 +88,7 @@ public class BankController {
         }
         return REDIRECT_BANK_QUERY;
     }
+    */
+
+
 }

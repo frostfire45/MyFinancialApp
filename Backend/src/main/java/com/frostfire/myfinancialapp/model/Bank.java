@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-
+@Table(name = "Bank")
 public class Bank {
     public enum AccountType { Checking, Savings }
     @Id

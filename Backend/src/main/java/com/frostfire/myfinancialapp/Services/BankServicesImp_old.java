@@ -6,16 +6,14 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.frostfire.myfinancialapp.dau.BankDAO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.frostfire.myfinancialapp.model.Bank;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class BankServicesImp implements BankService {
+
+public class BankServicesImp_old implements BankService {
     
-    @Autowired
+    //Autowired
     private BankDAO bankDAO;
 
     @Override
