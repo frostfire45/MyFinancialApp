@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BankDaoImpl implements BankDAO {
+public class BankDaoImpl  {
 
-    @Autowired
+   // @Autowired
     private SessionFactory sessionFactory;
     private List<Bank> banks;
 

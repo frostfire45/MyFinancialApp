@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-
 public class HomeController {
 	private final MockBank banksDao;
 
@@ -24,7 +23,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		return "/index";
+		return "index";
 	}
 	@RequestMapping(value="/hello2")
     public ModelAndView hello(@RequestParam(required=false, defaultValue="World") String name) {

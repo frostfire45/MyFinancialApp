@@ -1,6 +1,8 @@
 package com.frostfire.myfinancialapp.Controller;
 
 import com.frostfire.myfinancialapp.Services.BankService;
+import com.frostfire.myfinancialapp.dau.BankDAO;
+import com.frostfire.myfinancialapp.dau.BankDaoImpl;
 import com.frostfire.myfinancialapp.model.Bank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class BankController {
 
     @Autowired
-    private BankService bankService;
+    private final BankDAO bankDAO;
 
+    public BankController(BankDAO bankDAO) {
+        this.bankDAO = bankDAO;
+    }
+
+    @GetMapping(path="all")
+    public @ResponseBody Iterable<Bank> getAllUsers() {
+        // This returns a JSON or XML with the users
+        return bankDAO.findAll();
+    }
+    /*
     @GetMapping("/index")
     public ModelAndView bankLanding(){
         ModelAndView mnv = new ModelAndView();
@@ -21,7 +33,7 @@ public class BankController {
         mnv.setViewName("bank/BankIndex");
         return mnv;
     }
-    /*
+
     final String REDIRECT_BANK_QUERY = "redirect:/bank/bankQuery";
 
     // GET ALL Other way

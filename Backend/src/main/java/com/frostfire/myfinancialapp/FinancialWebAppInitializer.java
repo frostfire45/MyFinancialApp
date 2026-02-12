@@ -12,23 +12,23 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
-public class FinancialWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer
-        implements WebApplicationInitializer {
-/*
+public class FinancialWebAppInitializer implements WebApplicationInitializer {
+
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext webContext = new AnnotationConfigWebApplicationContext();
-		//webContext.register(MvcConfiguration.class);
+		webContext.register(MvcConfiguration.class);
 		webContext.setServletContext(servletContext);
 		
-		//ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher",
-		//		new DispatcherServlet(webContext));
+		ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher",
+				new DispatcherServlet(webContext));
 		
-		//servlet.setLoadOnStartup(1);
-		//Serving it. 
-		//servlet.addMapping("/");
+		servlet.setLoadOnStartup(1);
+		//Serving it.
+		servlet.addMapping("/");
 	}
-*/
+	/*
+
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
@@ -43,4 +43,6 @@ public class FinancialWebAppInitializer extends AbstractAnnotationConfigDispatch
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class[] { MvcConfiguration.class};
 	}
+	*/
+
 }

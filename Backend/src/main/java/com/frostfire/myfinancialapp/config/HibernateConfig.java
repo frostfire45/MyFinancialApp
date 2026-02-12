@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // xml format and then reference it getSessionFactory()
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement // Allow for spring annotation driven transaction.
-@ComponentScans( @ComponentScan("com.frostfire.myfinancialapp"))
+//@ComponentScans(value = {@ComponentScan("com.frostfire.myfinancialapp")})
 public class HibernateConfig {
 
     @Autowired
@@ -38,7 +38,7 @@ public class HibernateConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName.mysql"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName.driver"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
         dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
         dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
